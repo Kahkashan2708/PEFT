@@ -4,13 +4,7 @@ Parameter-Efficient Fine-Tuning (PEFT) refers to a set of techniques that fine-t
 
 Large language models (LLMs) such as BERT, GPT, T5, and LLaMA contain millions or billions of parameters. Fully fine-tuning them is costly, slow, and memory-intensive. PEFT offers a much cheaper alternative by freezing the main model and learning only task-specific parameters.
 
-
-| Image 1 | Image 2 |
-|--------|---------|
-| <img src="https://github.com/user-attachments/assets/03ed8edf-1d7d-432c-81a8-60a29b4c0439" width="300"/> | <img src="https://github.com/user-attachments/assets/e69a882b-7399-4ce7-a179-0c2d122b44c8" width="300"/> |
-
-
-
+![PEFT Image](https://github.com/user-attachments/assets/03ed8edf-1d7d-432c-81a8-60a29b4c0439)
 
 
 ## Core Idea of PEFT
@@ -26,6 +20,7 @@ This results in:
 * Faster training
 * Fewer trainable parameters
 * Easier storage of multiple task-specific models
+![PEFT Diagram](https://github.com/user-attachments/assets/e69a882b-7399-4ce7-a179-0c2d122b44c8)
 
 ## Why PEFT Works?
 
