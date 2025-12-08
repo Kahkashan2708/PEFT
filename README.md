@@ -38,8 +38,7 @@ These adjustments can be captured by a small number of additional parameters wit
 3. Prefix Tuning
 4. Prompt Tuning (Soft Prompt Tuning)
 5. QLoRA (Quantized LoRA)
-
-# Types of PEFT Methods
+---
 
 ## 1. LoRA (Low-Rank Adaptation)
 
