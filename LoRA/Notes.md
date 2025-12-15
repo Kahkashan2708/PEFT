@@ -9,10 +9,10 @@ LoRA (Low-Rank Adaptation) is a Parameter-Efficient Fine-Tuning (PEFT) technique
 Modern models such as GPT, BERT, and LLaMA contain billions of parameters. Fully fine-tuning these models is computationally expensive, requires large GPU memory, and is often impractical in resource-constrained environments. LoRA addresses these challenges by freezing the original model weights and training only a small number of additional parameters. Despite training far fewer parameters, LoRA often achieves performance close to full fine-tuning, making it a cost-effective and scalable solution.
 
 ---
+## Mathematical Formulation of LoRA
 
-## Core Idea
-
-Consider a weight matrix \( W \in \mathbb{R}^{d \times k} \) in a neural network layer. Instead of updating \( W \) directly during fine-tuning, LoRA represents the update as an additive low-rank decomposition:
+Consider a weight matrix \( W \in \mathbb{R}^{d \times k} \) in a neural network layer.  
+Instead of updating \( W \) directly during fine-tuning, LoRA represents the update as an additive low-rank decomposition:
 
 \[
 W' = W + \Delta W
@@ -24,12 +24,23 @@ where
 \Delta W = A B
 \]
 
-Here,  
-\( A \in \mathbb{R}^{d \times r} \)  
-\( B \in \mathbb{R}^{r \times k} \)  
-and \( r \ll \min(d, k) \), which enforces a low-rank constraint.
+Here,
 
-Only the matrices \( A \) and \( B \) are trained during fine-tuning, while the original weight matrix \( W \) remains frozen. This significantly reduces the number of trainable parameters.
+\[
+A \in \mathbb{R}^{d \times r}, \quad
+B \in \mathbb{R}^{r \times k}
+\]
+
+and
+
+\[
+r \ll \min(d, k)
+\]
+
+which enforces a low-rank constraint.
+
+Only the matrices \( A \) and \( B \) are trained during fine-tuning, while the original weight matrix \( W \) remains frozen.  
+This significantly reduces the number of trainable parameters while still allowing effective task adaptation.
 
 ---
 
