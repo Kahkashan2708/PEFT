@@ -11,36 +11,38 @@ Modern models such as GPT, BERT, and LLaMA contain billions of parameters. Fully
 ---
 ## Mathematical Formulation of LoRA
 
-Consider a weight matrix \( W \in \mathbb{R}^{d \times k} \) in a neural network layer.  
-Instead of updating \( W \) directly during fine-tuning, LoRA represents the update as an additive low-rank decomposition:
+Let \( W \in \mathbb{R}^{d \times k} \) be a weight matrix of a neural network layer.
 
-\[
+During LoRA-based fine-tuning, the original weight matrix \( W \) is kept frozen.
+Instead of updating \( W \) directly, LoRA learns an additive low-rank update defined as:
+
+$$
 W' = W + \Delta W
-\]
+$$
 
-where
+where the update matrix \( \Delta W \) is expressed as a low-rank decomposition:
 
-\[
+$$
 \Delta W = A B
-\]
+$$
 
 Here,
 
-\[
+$$
 A \in \mathbb{R}^{d \times r}, \quad
 B \in \mathbb{R}^{r \times k}
-\]
+$$
 
-and
+with
 
-\[
+$$
 r \ll \min(d, k)
-\]
+$$
 
-which enforces a low-rank constraint.
-
-Only the matrices \( A \) and \( B \) are trained during fine-tuning, while the original weight matrix \( W \) remains frozen.  
-This significantly reduces the number of trainable parameters while still allowing effective task adaptation.
+This low-rank constraint significantly reduces the number of trainable parameters.
+Only the matrices \( A \) and \( B \) are optimized during fine-tuning, while the
+original weight matrix \( W \) remains unchanged. As a result, LoRA enables
+efficient task adaptation with minimal computational and memory overhead.
 
 ---
 
