@@ -14,41 +14,45 @@ Large language models such as LLaMA, GPT, and Falcon require enormous GPU memory
 
 ## Core Idea of QLoRA
 
-QLoRA builds on the idea of LoRA by introducing **quantization** of the base model. The original model weights are quantized to 4-bit precision and frozen. Fine-tuning is performed by learning low-rank adapters in higher precision.
+QLoRA builds on the idea of LoRA by introducing quantization of the base model.
+The original model weights are quantized to 4-bit precision and frozen.
+Fine-tuning is performed by learning low-rank adapters in higher precision.
 
 Let the original weight matrix be:
 
-\[
+$$
 W \in \mathbb{R}^{d \times k}
-\]
+$$
 
 In QLoRA, the quantized version of the weight matrix is:
 
-\[
+$$
 \hat{W} = \text{Quantize}(W)
-\]
+$$
 
 The effective weight used during training is:
 
-\[
+$$
 W' = \hat{W} + \Delta W
-\]
+$$
 
 where the LoRA update is defined as:
 
-\[
+$$
 \Delta W = A B
-\]
+$$
 
 with:
 
-\[
+$$
 A \in \mathbb{R}^{d \times r}, \quad
 B \in \mathbb{R}^{r \times k}, \quad
 r \ll \min(d, k)
-\]
+$$
 
-Only the matrices \( A \) and \( B \) are trainable. The quantized base weights \( \hat{W} \) remain frozen.
+Only the matrices \( A \) and \( B \) are trainable.
+The quantized base weights \( \hat{W} \) remain frozen.
+
 
 ---
 
